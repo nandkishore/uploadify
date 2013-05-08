@@ -1,0 +1,23 @@
+<h1>Listing skus</h1>
+
+<table>
+  <tr>
+    <th>Code</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @skus.each do |sku| %>
+  <tr>
+    <td><%= sku.code %></td>
+    <td><%= link_to 'Show', sku %></td>
+    <td><%= link_to 'Edit', edit_sku_path(sku) %></td>
+    <td><%= link_to 'Destroy', sku, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Sku', new_sku_path %>
