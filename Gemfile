@@ -6,6 +6,11 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'flash_cookie_session'
+gem 'haml'
+gem 'rubyzip', :require => 'zip/zip'
 
 
 # Gems used only for assets and not required

@@ -1,8 +1,8 @@
-<h1>Listing skus</h1>
+<h1>Listing SKU'S</h1>
 
 <table>
   <tr>
-    <th>Code</th>
+    <th>SKU Code</th>
     <th></th>
     <th></th>
     <th></th>
@@ -11,9 +11,9 @@
 <% @skus.each do |sku| %>
   <tr>
     <td><%= sku.code %></td>
-    <td><%= link_to 'Show', sku %></td>
     <td><%= link_to 'Edit', edit_sku_path(sku) %></td>
     <td><%= link_to 'Destroy', sku, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to "Download All", :controller => "skus", :action => "download_all", :id => sku %></td>
   </tr>
 <% end %>
 </table>

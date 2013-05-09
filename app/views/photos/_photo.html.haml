@@ -1,0 +1,4 @@
+.photo[photo]
+  %p= photo.image.file.filename
+  = image_tag(photo.image_url, :size => '100x100') if photo.image?
+ 

@@ -3,12 +3,14 @@
 <head>
   <title>Uploadify</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "application", "jquery.uploadify.v2.0.0", "swfobject" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
 <%= yield %>
+<%= yield :scripts %>
 
+<div><br/> <%= link_to "Upload CSV file for SKU's", root_path %> | <%= link_to "List of SKU's", skus_path %> </div>
 </body>
 </html>

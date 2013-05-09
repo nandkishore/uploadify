@@ -1,4 +1,14 @@
 Uploadify::Application.routes.draw do
+  match 'csv_import' => 'skus#csv_import'
+  match 'upload' => 'skus#upload'
+  match 'download_all' => 'skus#download_all'
+
+  resources :skus do
+    resources :photos, :only => [:create, :destroy]
+  end
+  resources :skus
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +58,7 @@ Uploadify::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'skus#csv_import'
 
   # See how all your routes lay out with "rake routes"
 
