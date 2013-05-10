@@ -94,7 +94,7 @@ class SkusController < ApplicationController
     n=0
     @parsed_file.each  do |row|
       row.each do |x|
-        sku = Sku.new(:code => x)
+        sku = Sku.new(:code => x.gsub("\s", ""))
         sku.save if sku.valid?
       end
       flash.now[:message]="CSV Import Successful,  #{n} new records added to data base"
