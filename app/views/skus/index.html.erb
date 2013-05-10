@@ -1,3 +1,9 @@
+<h1>Upload CSV file for SKU'S</h1>
+
+<div>
+<%= render "csv_upload" %>
+</div>
+
 <h1>Listing SKU'S</h1>
 
 <table>
@@ -11,7 +17,7 @@
 <% @skus.each do |sku| %>
   <tr>
     <td><%= sku.code %></td>
-    <td><%= link_to 'Edit', edit_sku_path(sku) %></td>
+    <td><%= link_to 'Add Images', edit_sku_path(sku) %></td>
     <td><%= link_to 'Destroy', sku, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <td><%= link_to "Download All", :controller => "skus", :action => "download_all", :id => sku %></td>
   </tr>
