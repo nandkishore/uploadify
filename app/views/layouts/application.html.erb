@@ -7,10 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div style="float: right"><br/> <%= link_to "Home (Upload CSV / List Sku's)", root_path %> </div>
 
 <%= yield %>
 <%= yield :scripts %>
 
-<div><br/> <%= link_to "Upload CSV file for SKU's", root_path %> | <%= link_to "List of SKU's", skus_path %> </div>
 </body>
 </html>

@@ -16,14 +16,38 @@
 
 <% @skus.each do |sku| %>
   <tr>
-    <td><%= sku.code %></td>
-    <td><%= link_to 'Add Images', edit_sku_path(sku) %></td>
+    <td><%= sku.code %><form action=<%= "/skus/#{sku.id}/photos" %>
+      class="dropzone" id="my-awesome-dropzone"></form></td>
+    <td><%= link_to 'View Uploaded Images', edit_sku_path(sku) %></td>
     <td><%= link_to 'Destroy', sku, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <td><%= link_to "Download All", :controller => "skus", :action => "download_all", :id => sku %></td>
-  </tr>
+  </tr
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Sku', new_sku_path %>
+<%#= link_to 'New Sku', new_sku_path %>
+
+<style>
+
+table,th, td
+{
+border: 1px solid black;
+text-align:center;
+}
+table 
+{
+width:100%;
+}
+th
+{
+height:50px;
+}
+</style>
+
+<script>
+Dropzone.options.myAwesomeDropzone = {
+dictDefaultMessage: "Click or Drop images here to upload"
+}
+</script>

@@ -11,10 +11,10 @@ class PhotosController < ApplicationController
         
         flash[:error] = 'Photo could not be uploaded'
       end
-      # @photo.rename("helloworld")
       format.js do
         render :text => render_to_string(:partial => 'photos/photo', :locals => {:photo => @photo})
       end
+      format.json  { render json: "ok"} 
     end
   end
 
@@ -37,6 +37,6 @@ private
     end
     
     def find_or_build_photo
-      @photo = @sku.photos.build(params[:photo])
+      @photo = @sku.photos.build(:image => params[:file])
     end
 end
