@@ -2,13 +2,14 @@ Uploadify::Application.routes.draw do
   match 'csv_import' => 'skus#csv_import'
   match 'upload' => 'skus#upload'
   match 'download_all' => 'skus#download_all'
+  match 'skus/delete_all' => 'skus#delete_all', :via => :delete
 
   resources :skus do
     resources :photos, :only => [:create, :destroy]
   end
   resources :skus
 
-
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

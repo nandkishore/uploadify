@@ -1,9 +1,11 @@
 <h1>Upload CSV file for SKU'S</h1>
 
-<div>
+<div style="float:left">
 <%= render "csv_upload" %>
-</div>
-
+</div><br/><br/><br/>
+<div style="float:right">
+<%= button_to "Delete all Sku Records", {:controller => "skus", :action => "delete_all" }, :confirm => "Are you sure? All Sku records & Images will be deleted!", :method => "delete" %>
+</div><br/><br/><br/>
 <h1>Listing SKU'S</h1>
 
 <table>
@@ -13,15 +15,18 @@
     <th></th>
     <th></th>
   </tr>
-
-<% @skus.each do |sku| %>
+  <% if @skus.blank? %>
+  <tr> <td><b>No SKU records to display!</b></td></tr>
+  <% else %>
+  <% @skus.each do |sku| %>
   <tr>
     <td><%= sku.code %><form action=<%= "/skus/#{sku.id}/photos" %>
-      class="dropzone" id="my-awesome-dropzone"></form></td>
+			     class="dropzone" id="my-awesome-dropzone"></form></td>
     <td><%= link_to 'View Uploaded Images', edit_sku_path(sku) %></td>
     <td><%= link_to 'Destroy', sku, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <td><%= link_to "Download All", :controller => "skus", :action => "download_all", :id => sku %></td>
   </tr
+<% end %>
 <% end %>
 </table>
 

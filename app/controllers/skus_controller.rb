@@ -89,15 +89,17 @@ class SkusController < ApplicationController
     
   def upload 
     @dump = Sku.new
-    data = params[:file].read
-    @parsed_file=CSV.parse(data)
-    n=0
-    @parsed_file.each  do |row|
-      row.each do |x|
-        sku = Sku.new(:code => x.gsub("\s", ""))
-        sku.save if sku.valid?
+    if !params[:file].nil?
+      data = params[:file].read
+      @parsed_file=CSV.parse(data)
+      n=0
+      @parsed_file.each  do |row|
+        row.each do |x|
+          sku = Sku.new(:code => x.gsub("\s", ""))
+          sku.save if sku.valid?
+        end
+        flash.now[:message]="CSV Import Successful,  #{n} new records added to data base"
       end
-      flash.now[:message]="CSV Import Successful,  #{n} new records added to data base"
     end
     redirect_to skus_path
   end
@@ -129,5 +131,13 @@ class SkusController < ApplicationController
     } 
     #send the file as an attachment to the user.
     send_file zip_file_path, :type => 'application/zip', :disposition => 'attachment', :filename => "#{@sku.code}.zip"
+  end
+
+  def delete_all
+    Sku.destroy_all
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.json { head :no_content }
+    end
   end
 end
