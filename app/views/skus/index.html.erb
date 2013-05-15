@@ -1,11 +1,14 @@
 <h1>Upload CSV file for SKU'S</h1>
 
 <div style="float:left">
-<%= render "csv_upload" %>
+  <%= render "csv_upload" %>
 </div><br/><br/><br/>
 <div style="float:right">
-<%= button_to "Delete all Sku Records", {:controller => "skus", :action => "delete_all" }, :confirm => "Are you sure? All Sku records & Images will be deleted!", :method => "delete" %>
+  <%= button_to "Delete all Sku Records", {:controller => "skus", :action => "delete_all" }, :confirm => "Are you sure? All Sku records & Images will be deleted!", :method => "delete" %>
 </div><br/><br/><br/>
+<div style="float:center">
+  <%= button_to "Download all Images", {:controller => "skus", :action => "download_all_images" } %>
+</div>
 <h1>Listing SKU'S</h1>
 
 <table>

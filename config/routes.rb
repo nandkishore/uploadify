@@ -3,6 +3,7 @@ Uploadify::Application.routes.draw do
   match 'upload' => 'skus#upload'
   match 'download_all' => 'skus#download_all'
   match 'skus/delete_all' => 'skus#delete_all', :via => :delete
+  match 'skus/download_all_images' => 'skus#download_all_images'
 
   resources :skus do
     resources :photos, :only => [:create, :destroy]

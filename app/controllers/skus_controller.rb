@@ -140,4 +140,22 @@ class SkusController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def download_all_images
+    skus = Sku.find(:all)
+    zip_file_path = "#{Rails.root}/public/all_images.zip"
+    if File.file?(zip_file_path)
+      File.delete(zip_file_path)
+    end
+    skus.each do |sku|
+      attachments = sku.photos
+      Zip::ZipFile.open(zip_file_path, Zip::ZipFile::CREATE) { |zipfile|
+        attachments.each do |attachment|
+          url = "#{Rails.root}/public" + attachment.image.url
+          zipfile.add( attachment.image.file.filename , url) 
+        end
+      } 
+    end
+    send_file zip_file_path, :type => 'application/zip', :disposition => 'attachment', :filename => "all_images.zip"
+  end
 end
